@@ -1,0 +1,55 @@
+version: "3"
+services:
+  credit:
+    image: springboot/springboot-credit
+    build: .\credit
+    ports:
+      - 8080:8080
+    depends_on:
+      - customer
+      - product
+      - database
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_USER=credit
+      - DATABASE_PASSWORD=credit
+      - DATABASE_NAME=task
+      - DATABASE_PORT=8083
+
+  customer:
+    image: springboot/springboot-customer
+    build: .\customer
+    ports:
+      - 8081:8081
+    depends_on:
+      - database
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_USER=credit
+      - DATABASE_PASSWORD=credit
+      - DATABASE_NAME=task
+      - DATABASE_PORT=8083
+
+  product:
+    image: springboot/springboot-product
+    build: .\product
+    ports:
+      - 8082:8082
+    depends_on:
+      - database
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_USER=credit
+      - DATABASE_PASSWORD=credit
+      - DATABASE_NAME=task
+      - DATABASE_PORT=8083
+
+  database:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=task
+      - MYSQL_USER=credit
+      - MYSQL_PASSWORD=credit
+    ports:
+      - 8083:8083
