@@ -1,56 +1,51 @@
 version: "3"
 services:
+  database:
+    image: mysql:latest
+    container_name: database
+    volumes:
+      - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=myroot
+      - MYSQL_DATABASE=task
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "task" ,"ping", "-h", "database"]
+      timeout: 1s
+      retries: 100
+    networks:
+      - dataCredt
+
   credit:
     image: springboot/springboot-credit
     build: .\credit
     ports:
       - 8080:8080
     depends_on:
-      - customer
-      - product
       - database
+      #- customer
+      #- product
     environment:
-      - DATABASE_HOST=database
-      - DATABASE_USER=credit
-      - DATABASE_PASSWORD=credit
-      - DATABASE_NAME=task
-      - DATABASE_PORT=8083
+      - DATASOURCE_URL=jdbc:mysql://database:3306/task?useSSL=falsek&user=root&password=myroot&autoReconnect=true
+    networks:
+      - dataCredt
 
-  customer:
-    image: springboot/springboot-customer
-    build: .\customer
-    ports:
-      - 8081:8081
-    depends_on:
-      - database
-    environment:
-      - DATABASE_HOST=database
-      - DATABASE_USER=credit
-      - DATABASE_PASSWORD=credit
-      - DATABASE_NAME=task
-      - DATABASE_PORT=8083
+  #ustomer:
+  #  image: springboot/springboot-customer
+  #  build: .\customer
+  #  ports:
+  #    - 8081:8081
+  #  depends_on:
+  #    - database
 
-  product:
-    image: springboot/springboot-product
-    build: .\product
-    ports:
-      - 8082:8082
-    depends_on:
-      - database
-    environment:
-      - DATABASE_HOST=database
-      - DATABASE_USER=credit
-      - DATABASE_PASSWORD=credit
-      - DATABASE_NAME=task
-      - DATABASE_PORT=8083
+  #product:
+  #  image: springboot/springboot-product
+  #  build: .\product
+  #  ports:
+  #    - 8082:8082
+  #  depends_on:
+  #    - database
 
-  database:
-    image: mysql:latest
-    volumes:
-      - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=credit
-      - MYSQL_PASSWORD=credit
-    ports:
-      - 8083:8083
+networks:
+  dataCredt:
