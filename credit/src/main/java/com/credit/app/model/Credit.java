@@ -1,14 +1,32 @@
 package com.credit.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Credit {
-    private int ID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    private Integer ID;
+
+    @NotNull
     private String CreditName;
 
-    public int getID() {
+    public Credit(){}
+
+    public Credit(@NotNull String creditName){
+        CreditName = creditName;
+    }
+
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -18,13 +36,5 @@ public class Credit {
 
     public void setCreditName(String creditName) {
         CreditName = creditName;
-    }
-
-    @Override
-    public String toString() {
-        return "Credit{" +
-                "ID=" + ID +
-                ", CreditName='" + CreditName + '\'' +
-                '}';
     }
 }

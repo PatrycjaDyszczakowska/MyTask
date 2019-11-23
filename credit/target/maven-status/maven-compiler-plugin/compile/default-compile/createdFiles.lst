@@ -1,8 +1,0 @@
-com\credit\app\service\CreditService.class
-com\credit\app\controller\CreditController.class
-com\credit\app\dao\CreditDao.class
-com\credit\app\model\Credit.class
-com\credit\app\dao\CreditDaoImp.class
-com\credit\app\service\CreditServiceImpl.class
-com\credit\app\CreditApplication.class
-com\credit\app\config\DataSourceConfig.class

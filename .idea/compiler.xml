@@ -7,14 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-customer" />
-        <module name="springboot-credit" />
         <module name="springboot-product" />
       </profile>
+      <profile name="Annotation profile for start-project" enabled="true">
+        <sourceOutputDir name="../customer/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../customer/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springboot-credit" />
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="springboot-customer" target="13" />
-      <module name="springboot-product" target="13" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

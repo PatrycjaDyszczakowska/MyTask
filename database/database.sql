@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS Product (
     FOREIGN KEY (CreditID) REFERENCES Credit(ID)
 );
 
-INSERT INTO Credit(ID, CreditName) VALUES (
+INSERT INTO credit(creditname) VALUES (
 1,"Ala");
-INSERT INTO Credit(ID, CreditName) VALUES (
+INSERT INTO credit(CreditName) VALUES (
 2,"Ala");
 
 INSERT INTO Customer(CreditID, FirstName, Pesel, Surname) VALUES (
