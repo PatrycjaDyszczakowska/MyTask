@@ -26,18 +26,18 @@ CREATE TABLE IF NOT EXISTS ProductDB.Product(
 );
 
 INSERT INTO CreditDB.Credit(CreditName) VALUES (
-"Ala");
+"Credit Name Test 1");
 INSERT INTO CreditDB.Credit(CreditName) VALUES (
-"Ala");
+"Credit Name Test 2");
 
 INSERT INTO  CustomerDB.Customer(CreditID, FirstName, Pesel, Surname) VALUES (
-1, "Ala", 931108029, "Ela");
+1, "First Name Test 1", 00000000001, "Surname Test 1");
 INSERT INTO  CustomerDB.Customer(CreditID, FirstName, Pesel, Surname) VALUES (
- 2, "Ala2", 931108022, "Ela2");
+2, "First Name Test 2", 00000000002, "Surname Test 2");
 
 INSERT INTO ProductDB.Product(CreditID, ProductName, Value) VALUES (
-1,"Cola", 212);
+1,"Product Name Test 1", 111);
 INSERT INTO ProductDB.Product(CreditID, ProductName, Value) VALUES (
-2,"peps", 210);
+2,"Product Name Test 2", 222);
 
 GRANT ALL PRIVILEGES ON *.* TO 'demo_java'@'%';
