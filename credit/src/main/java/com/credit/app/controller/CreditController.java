@@ -16,19 +16,39 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa kontrolująca zapytania usługi REST Kredytów
+ */
 @Controller
 public class CreditController {
+    /**
+     * Wywołany jest interfejs iCreditService
+     */
     @Autowired
     private ICreditService iCreditService;
 
+    /**
+     * Wywołany jest RestTemplate do komunikacji między usługami
+     */
     @Autowired
     protected RestTemplate restTemplate;
 
+    /**
+     * Metoda, która jest wyświetlana na początku przy połaczeniu z usługą
+     * @return zwraca prosty komunikat hello
+     */
     @GetMapping(path = "/")
     public @ResponseBody String hello(){
         return "Hello Credit what do u need?";
     }
 
+    /**
+     * Metoda odpowiadająca za wyświetlenie wszystkich informacji o kredycie, kliencie oraz produkcie
+     * przy wywołaniu GetCredits
+     * @return zwraca Json z danymi
+     */
     @GetMapping(path = "/GetCredits")
     public @ResponseBody
     List<JsonCredit> getCredits(){
@@ -39,6 +59,12 @@ public class CreditController {
         return iCreditService.getCredits(responseCustomer.getBody(), responseProduct.getBody());
     }
 
+    /**
+     * Metoda odpowiadająca za stworzenie kredytu przy wywołaniu CreateCredit
+     * wywołuje ona również stworzenie produktu oraz klienta przez wywołanie ich usług
+     * @param jsonCredit - komunikacja za pomocą Json
+     * @return zwraca informacje o numerze kredytu
+     */
     @PostMapping(path = "/CreateCredit")
     public @ResponseBody String createCredit (@RequestBody JsonCredit jsonCredit){
         if (jsonCredit.getPesel().length() == 11) {

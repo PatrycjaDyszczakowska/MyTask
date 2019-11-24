@@ -1,5 +1,10 @@
 package com.credit.app.model;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa zawierająca informacje o produkcie, kliencie oraz kredycie
+ */
 public class JsonCredit {
     private String CreditName;
     private String FirstName;

@@ -1,5 +1,10 @@
 package com.customer.app.model;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa zawierająca informacje o kliencie
+ */
 public class Customer {
     private Integer ID;
     private Integer CreditID;

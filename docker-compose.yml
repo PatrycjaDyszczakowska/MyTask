@@ -1,5 +1,8 @@
+#Wersja docker-compose
 version: "3"
+#Wywołanie kontenerów docker
 services:
+  #Kontener docker dala bazy danych
   database:
     image: mysql/mysql-server:5.7
     container_name: database
@@ -11,7 +14,7 @@ services:
       - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
     ports:
       - 3306:3306
-
+  #kntener docker dla komponentu SpringBoot Credit
   credit:
     image: springboot/springboot-credit
     build: .\credit
@@ -24,6 +27,7 @@ services:
       - product
     command: /bin/bash -c "sleep 30;"
 
+  #kntener docker dla komponentu SpringBoot Customer
   customer:
     image: springboot/springboot-customer
     build: .\customer
@@ -34,6 +38,7 @@ services:
       - database
     command: /bin/bash -c "sleep 30;"
 
+  #kntener docker dla komponentu SpringBoot Product
   product:
     image: springboot/springboot-product
     build: .\product

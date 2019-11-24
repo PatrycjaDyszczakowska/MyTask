@@ -1,5 +1,10 @@
 package com.credit.app.model;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa zawierająca informacje o kredycie
+ */
 public class Credit {
     private Integer ID;
     private String CreditName;

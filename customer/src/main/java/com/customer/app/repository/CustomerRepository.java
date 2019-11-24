@@ -9,12 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa w której wysyłane są i pobierane z bazy danych informacje o klientach
+ */
 @Repository
 public class CustomerRepository implements ICustomerRepository {
-
+    /**
+     * Komunikacja za pomocą JdbcTemplate
+     */
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * Metoda odpowiadająca za pobieranie wszystkich danych o klientach z bazy
+     * @return lista wszystkich klientów
+     */
     @Override
     public List<Customer> getCustomers() {
         String SQL = "SELECT * FROM Customer";
@@ -33,6 +44,10 @@ public class CustomerRepository implements ICustomerRepository {
         return customers;
     }
 
+    /**
+     * Metoda odpowiadająca za dodawanie klienta do bazy
+     * @param customer - informacje o dodawanym kliencie do bazy
+     */
     @Override
     public void createCustomer(Customer customer) {
         String SQL = "INSERT INTO Customer (CreditID, FirstName, Surname, Pesel) VALUES (?,?,?,?)";

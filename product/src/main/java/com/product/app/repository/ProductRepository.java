@@ -9,12 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa w której wysyłane są i pobierane z bazy danych informacje o Produktach
+ */
 @Repository
 public class ProductRepository implements IProductRepository {
 
+    /**
+     * Komunikacja za pomocą JdbcTemplate
+     */
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * Metoda odpowiadająca za pobieranie wszystkich danych o produktach z bazy
+     * @return lista wszystkich produktów
+     */
     @Override
     public List<Product> getCustomers() {
         String SQL = "SELECT * FROM Product";
@@ -32,6 +44,10 @@ public class ProductRepository implements IProductRepository {
         return products;
     }
 
+    /**
+     * Metoda odpowiadająca za dodawanie produktu do bazy
+     * @param product - informacje o dodawanym produkcie do bazy
+     */
     @Override
     public void createProduct(Product product) {
         String SQL = "INSERT INTO Product(CreditID, ProductName, Value) VALUES (?,?,?)";

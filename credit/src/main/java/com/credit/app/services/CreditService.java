@@ -3,7 +3,6 @@ package com.credit.app.services;
 import com.credit.app.model.Credit;
 import com.credit.app.model.JsonCredit;
 import com.credit.app.repository.ICreditRepository;
-import com.mysql.cj.xdevapi.JsonArray;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +10,27 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa wywołana przez kontroler do komunikacji z klasą odpowiadającą za
+ * pobieranie danych z bazy oraz agregującą dane z usług o producie i kliencie
+ */
 @Service
 public class CreditService implements ICreditService {
-
+    /**
+     * Wywołany jest interfejs iCreditRepository
+     */
     @Autowired
     private ICreditRepository iCreditRepository;
 
-
+    /**
+     * Metoda pobierająca z klasy CreditRepositowy liste wszystkich kredytów
+     * oraz agregująca dane z usług o produktach i klientach
+     * @param customer - informacje o wszystkich kliencie
+     * @param product - informacje o wszystkich produktach
+     * @return Lista informacji o kredycie, produkcie oraz kliencie
+     */
     @Override
     public List<JsonCredit> getCredits(String customer, String product) {
         List<Credit> credits = iCreditRepository.getCredits();
@@ -39,6 +52,10 @@ public class CreditService implements ICreditService {
         return jsonCredits;
     }
 
+    /**
+     * Metoda wywołująca dodawanie w klasie CreditPrepository nowy kredyt
+     * @param credit - informacje o kredycie
+     */
     @Override
     public void createCredit(Credit credit) {
         iCreditRepository.createCredit(credit);

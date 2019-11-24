@@ -1,5 +1,10 @@
 package com.product.app.model;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa zawierająca informacje o produkcie
+ */
 public class Product {
     private Integer ID;
     private Integer CreditID;

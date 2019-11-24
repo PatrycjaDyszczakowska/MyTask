@@ -29,7 +29,7 @@
   </component>
   <component name="ProjectId" id="1TyJx9LHtNRyDSYf4zFUygYMW4F" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/customer/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/product/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -40,16 +40,19 @@
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\credit\src\main\resources" />
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\src\main\docker" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.product.app.repository" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.product.app.model" />
       <recent name="com.customer.app.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\patry\Documents\GitHub\MyTask\product\src\main\resources" />
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\customer\src\main\resources" />
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\credit\src\main\java\com\credit\app" />
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\customer" />
       <recent name="C:\Users\patry\Documents\GitHub\MyTask\customer\.idea" />
-      <recent name="C:\Users\patry\Documents\GitHub\MyTask\product\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -64,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CustomerApplication">
+  <component name="RunManager" selected="JUnit.ProductRepositoryTest.getProducts_test">
     <configuration name="CreditApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.credit.app.CreditApplication" />
       <module name="springboot-credit" />
@@ -96,7 +99,7 @@
       <module name="springboot-product" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.product.app.*" />
+          <option name="PATTERN" value="com.product.app.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,14 +115,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProductRepositoryTest.getProducts_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-product" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.product.app.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.product.app.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.product.app.repository.ProductRepositoryTest" />
+      <option name="METHOD_NAME" value="getProducts_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductRepositoryTest.getProducts_test" />
         <item itemvalue="Application.CustomerApplication" />
         <item itemvalue="Application.CreditApplication" />
         <item itemvalue="Application.ProductApplication" />
         <item itemvalue="JUnit.All in springboot-credit" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />

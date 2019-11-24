@@ -5,6 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Collections;
 
+/**
+ * @author Patrycja Dyszczakowska
+ * @version 1.0
+ * Klasa główna wywołująca usługe REST odpowiadającą za produkty na porcie 8082
+ */
 @SpringBootApplication
 public class ProductApplication {
     public static void main(String[] args) {
