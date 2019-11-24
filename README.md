@@ -1,7 +1,7 @@
 # MyTask
 The application is used for post and get information about customer credit.
 
-#Technologies
+## Technologies
 Project is created on Windows 10 within:
 * Java: 8
 * Apache Maven: 3.6.2
@@ -9,7 +9,7 @@ Project is created on Windows 10 within:
 * MySQL: 
 * Docker: 19.03.5
 
-#Setup
+## Setup
 Install Docker for Windows.
 
 Before starting the project, check if docker is running and firewall is blocking file Sharing between Windows and the containers.
@@ -100,7 +100,7 @@ database    |
 database    | [Entrypoint] Starting MySQL 5.7.28-1.1.13
 ```
 
-#Example service calls
+## Example service calls
 Example POST: CreateCredit
 
 ![Post calling](./Image/Post.jpg)
@@ -108,7 +108,7 @@ Example POST: CreateCredit
 Example GET: GetCredits
 ![Get calling](./Image/Get.jpg)
 
-#Author
+## Author
 * Patrycja Dyszczakowska
 
 
