@@ -101,9 +101,12 @@ database    | [Entrypoint] Starting MySQL 5.7.28-1.1.13
 ```
 
 ## Example service calls
+<<<<<<< HEAD
 For test service calls i use google chrome application: Advanced REST client 
 * https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=pl
 
+=======
+>>>>>>> 04f95e1e5755c8476f5745b436d1b726603458a2
 Example POST: CreateCredit
 
 ![Post calling](./Image/Post.jpg)
