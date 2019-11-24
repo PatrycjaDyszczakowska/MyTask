@@ -1,18 +1,15 @@
 package com.product.app.controller;
 
 import com.product.app.model.Product;
-import com.product.app.repository.ProductRepository;
+import com.product.app.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProductController {
     @Autowired
-    private ProductRepository productRepository;
+    private IProductService iProductService;
 
     @GetMapping(path = "/")
     public @ResponseBody String hello(){
@@ -21,18 +18,16 @@ public class ProductController {
 
     @GetMapping(path = "/GetProducts")
     public @ResponseBody Iterable<Product> getProducts(){
-        return productRepository.findAll();
+        return iProductService.getProducts();
     }
 
     @PostMapping(path = "/CreateProduct")
-    public @ResponseBody String createProduct(@RequestParam("creditId") Integer creditID,
-                                              @RequestParam("productName") String productName,
-                                              @RequestParam("value") Integer value){
+    public @ResponseBody String createProduct(@RequestBody Product productJson){
         Product product = new Product();
-        product.setCreditID(creditID);
-        product.setProductName(productName);
-        product.setValue(value);
-        productRepository.save(product);
+        product.setCreditID(productJson.getCreditID());
+        product.setProductName(productJson.getProductName());
+        product.setValue(productJson.getValue());
+        iProductService.createProduct(product);
         return "Done!";
     }
 }

@@ -1,40 +1,36 @@
 package com.customer.app.controller;
 
 import com.customer.app.model.Customer;
-import com.customer.app.repository.CustomerRepository;
+import com.customer.app.repository.ICustomerRepository;
+import com.customer.app.services.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CustomerController {
     @Autowired
-    private CustomerRepository customerRepository;
+    private ICustomerService iCustomerService;
 
     @GetMapping(path = "/")
-    public @ResponseBody String hello(){
+    public @ResponseBody
+    String hello(){
         return "hello Customer what do u need?";
     }
 
     @GetMapping(path = "/GetCustomers")
     public @ResponseBody Iterable<Customer> getCustomers(){
-        return customerRepository.findAll();
+        return iCustomerService.getCustomers();
     }
 
     @PostMapping(path = "/CreateCustomer")
-    public @ResponseBody String createCustomer(@RequestParam("creditId") Integer creditID,
-                                               @RequestParam("firstName") String firstName,
-                                               @RequestParam("surname") String surname,
-                                               @RequestParam("pesel") String pesel){
+    public @ResponseBody String createCustomer(@RequestBody Customer customerJson){
         Customer customer = new Customer();
-        customer.setCreditID(creditID);
-        customer.setFirstName(firstName);
-        customer.setSurname(surname);
-        customer.setPesel(pesel);
-        customerRepository.save(customer);
+        customer.setCreditID(customerJson.getCreditID());
+        customer.setFirstName(customerJson.getFirstName());
+        customer.setSurname(customerJson.getSurname());
+        customer.setPesel(customerJson.getPesel());
+        iCustomerService.createCustomer(customer);
         return "Done!";
     }
 }

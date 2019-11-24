@@ -1,22 +1,14 @@
 package com.credit.app.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@SequenceGenerator(name="seq", initialValue=3)
 public class Credit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @NotNull
     private Integer ID;
-
-    @NotNull
     private String CreditName;
 
-    public Credit(){}
+    public Credit() {
+    }
 
-    public Credit(@NotNull String creditName){
+    public Credit(Integer ID, String creditName) {
+        this.ID = ID;
         CreditName = creditName;
     }
 
@@ -35,4 +27,5 @@ public class Credit {
     public void setCreditName(String creditName) {
         CreditName = creditName;
     }
+
 }

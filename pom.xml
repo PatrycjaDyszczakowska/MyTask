@@ -11,8 +11,8 @@
 
     <modules>
         <module>credit</module>
-        <module>customer</module>
         <module>product</module>
+        <module>customer</module>
     </modules>
 
     <build>

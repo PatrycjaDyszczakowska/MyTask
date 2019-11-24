@@ -1,4 +1,7 @@
 com\customer\app\model\Customer.class
-com\customer\app\controller\CustomerController.class
+com\customer\app\services\CustomerService.class
+com\customer\app\services\ICustomerService.class
 com\customer\app\CustomerApplication.class
+com\customer\app\repository\ICustomerRepository.class
+com\customer\app\controller\CustomerController.class
 com\customer\app\repository\CustomerRepository.class

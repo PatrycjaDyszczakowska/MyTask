@@ -2,42 +2,42 @@ CREATE DATABASE IF NOT EXISTS CreditDB;
 CREATE DATABASE IF NOT EXISTS CustomerDB;
 CREATE DATABASE IF NOT EXISTS ProductDB;
 
-CREATE TABLE IF NOT EXISTS CreditDB.credit(
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    credit_name varchar(255),
-    PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS CreditDB.Credit(
+    ID INT NOT NULL AUTO_INCREMENT,
+    CreditName varchar(255),
+    PRIMARY KEY (ID)
 );
 
-CREATE TABLE IF NOT EXISTS CustomerDB.customer(
-    id INT NOT NULL AUTO_INCREMENT,
-    creditid INT NOT NULL,
-    first_name varchar(255),
-    pesel varchar(11),
-    surname varchar(255),
-    PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS CustomerDB.Customer(
+    ID INT NOT NULL AUTO_INCREMENT,
+    CreditID INT NOT NULL,
+    FirstName varchar(255),
+    Pesel varchar(11),
+    Surname varchar(255),
+    PRIMARY KEY (ID)
 );
 
-CREATE TABLE IF NOT EXISTS ProductDB.product(
-    id INT NOT NULL AUTO_INCREMENT,
-    creditid INT,
-    product_name varchar(255),
-    value INT,
-    PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS ProductDB.Product(
+    ID INT NOT NULL AUTO_INCREMENT,
+    CreditID INT,
+    ProductName varchar(255),
+    Value INT,
+    PRIMARY KEY (ID)
 );
 
-INSERT INTO CreditDB.credit(credit_name) VALUES (
+INSERT INTO CreditDB.Credit(CreditName) VALUES (
 "Ala");
-INSERT INTO CreditDB.credit(credit_name) VALUES (
+INSERT INTO CreditDB.Credit(CreditName) VALUES (
 "Ala");
 
-INSERT INTO  CustomerDB.customer(creditid, first_name, pesel, surname) VALUES (
- 1, "Ala", 931108029, "Ela");
-INSERT INTO  CustomerDB.customer(creditid, first_name, pesel, surname) VALUES (
+INSERT INTO  CustomerDB.Customer(CreditID, FirstName, Pesel, Surname) VALUES (
+1, "Ala", 931108029, "Ela");
+INSERT INTO  CustomerDB.Customer(CreditID, FirstName, Pesel, Surname) VALUES (
  2, "Ala2", 931108022, "Ela2");
 
-INSERT INTO ProductDB.product(creditid, product_name, value) VALUES (
+INSERT INTO ProductDB.Product(CreditID, ProductName, Value) VALUES (
 1,"Cola", 212);
-INSERT INTO ProductDB.product(creditid, product_name, value) VALUES (
+INSERT INTO ProductDB.Product(CreditID, ProductName, Value) VALUES (
 2,"peps", 210);
 
 GRANT ALL PRIVILEGES ON *.* TO 'demo_java'@'%';

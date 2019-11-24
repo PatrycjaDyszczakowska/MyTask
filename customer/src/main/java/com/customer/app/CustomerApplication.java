@@ -8,9 +8,9 @@ import java.util.Collections;
 @SpringBootApplication
 public class CustomerApplication {
     public static void main(String[] args) {
-        SpringApplication customer = new SpringApplication(CustomerApplication.class);
-        customer.setDefaultProperties(Collections.
-                singletonMap("server.port", "8081"));
-        customer.run(args);
+        SpringApplication credit = new SpringApplication(CustomerApplication.class);
+        credit.setDefaultProperties(Collections
+                .singletonMap("server.port", "8081"));
+        credit.run(args);
     }
 }

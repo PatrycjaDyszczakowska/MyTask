@@ -1,28 +1,14 @@
 package com.product.app.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@SequenceGenerator(name="seq", initialValue=3)
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @NotNull
     private Integer ID;
-
-    @NotNull
     private Integer CreditID;
-
-    @NotNull
     private String ProductName;
-
-    @NotNull
     private Integer Value;
 
     public Product() {}
 
-    public Product(@NotNull Integer creditID, @NotNull String productName, @NotNull Integer value) {
+    public Product(Integer creditID, String productName, Integer value) {
         CreditID = creditID;
         ProductName = productName;
         Value = value;

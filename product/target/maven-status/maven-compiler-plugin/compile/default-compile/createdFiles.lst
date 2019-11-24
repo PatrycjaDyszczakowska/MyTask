@@ -1,3 +1,6 @@
+com\product\app\service\ProductService.class
+com\product\app\service\IProductService.class
+com\product\app\repository\IProductRepository.class
 com\product\app\controller\ProductController.class
 com\product\app\model\Product.class
 com\product\app\ProductApplication.class

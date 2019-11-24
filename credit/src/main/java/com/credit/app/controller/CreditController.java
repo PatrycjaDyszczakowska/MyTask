@@ -1,24 +1,25 @@
 package com.credit.app.controller;
 
 import com.credit.app.model.Credit;
-import com.credit.app.repository.CreditRepository;
+import com.credit.app.model.JsonCredit;
+import com.credit.app.services.ICreditService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 public class CreditController {
     @Autowired
-    private CreditRepository creditRepository;
+    private ICreditService iCreditService;
 
     @Autowired
     protected RestTemplate restTemplate;
@@ -29,31 +30,43 @@ public class CreditController {
     }
 
     @GetMapping(path = "/GetCredits")
-    public @ResponseBody Iterable<Credit> getCredits(){
-        return creditRepository.findAll();
-    }
-
-    @GetMapping(path = "/getCredit5")
-    public @ResponseBody Optional getCredit5(){
-        return creditRepository.findById(5);
+    public @ResponseBody
+    List<JsonCredit> getCredits(){
+        //ResponseEntity<String> responseProduct = restTemplate.exchange("http://localhost:8082/GetProducts", HttpMethod.GET, null, new ParameterizedTypeReference<String>() {});
+        ResponseEntity<String> responseProduct = restTemplate.exchange("http://product:8082/GetProducts", HttpMethod.GET, null, new ParameterizedTypeReference<String>() {});
+        //ResponseEntity<String> responseCustomer = restTemplate.exchange("http://localhost:8081/GetCustomers", HttpMethod.GET, null, new ParameterizedTypeReference<String>() {});
+        ResponseEntity<String> responseCustomer = restTemplate.exchange("http://customer:8081/GetCustomers", HttpMethod.GET, null, new ParameterizedTypeReference<String>() {});
+        return iCreditService.getCredits(responseCustomer.getBody(), responseProduct.getBody());
     }
 
     @PostMapping(path = "/CreateCredit")
-    public @ResponseBody String createCredit (@RequestParam("creditName") String creditName,
-                                              @RequestParam("firstName") String firstName,
-                                              @RequestParam("surname") String surname,
-                                              @RequestParam("pesel") String pesel,
-                                              @RequestParam("productName") String productName,
-                                              @RequestParam("value") Integer value){
-        if (pesel.length() == 11) {
+    public @ResponseBody String createCredit (@RequestBody JsonCredit jsonCredit){
+        if (jsonCredit.getPesel().length() == 11) {
             Credit credit = new Credit();
-            credit.setCreditName(creditName);
-            creditRepository.save(credit);
-            //restTemplate.exchange("http://localhost:8082/CreateProduct?creditId=" + credit.getID() + "&productName=" + productName + "&value=" + value, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
-            //restTemplate.exchange("http://localhost:8081/CreateCustomer?creditId=" + credit.getID() + "&firstName=" + firstName + "&surname=" + surname + "&pesel=" + pesel, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
-            restTemplate.exchange("http://product:8082/CreateProduct?creditId=" + credit.getID() + "&productName=" + productName + "&value=" + value, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
-            restTemplate.exchange("http://customer:8081/CreateCustomer?creditId=" + credit.getID() + "&firstName=" + firstName + "&surname=" + surname + "&pesel=" + pesel, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
-            return "{\n\"Numer kredytu\": " + credit.getID().toString() + "\n}";
+            credit.setCreditName(jsonCredit.getCreditName());
+            iCreditService.createCredit(credit);
+
+            HttpHeaders httpHeadersCustomer = new HttpHeaders();
+            httpHeadersCustomer.set("Content-Type", "application/json");
+            JSONObject jsonCustomer = new JSONObject();
+            jsonCustomer.put("pesel",jsonCredit.getPesel());
+            jsonCustomer.put("firstName",jsonCredit.getFirstName());
+            jsonCustomer.put("surname", jsonCredit.getSurname());
+            jsonCustomer.put("creditID",credit.getID());
+            HttpEntity <String> httpEntityCustomer = new HttpEntity<String>(jsonCustomer.toString(), httpHeadersCustomer);
+            //restTemplate.postForObject("http://localhost:8081/CreateCustomer",httpEntityCustomer,String.class);
+            restTemplate.postForObject("http://customer:8081/CreateCustomer",httpEntityCustomer,String.class);
+
+            HttpHeaders httpHeadersProduct = new HttpHeaders();
+            httpHeadersProduct.set("Content-Type", "application/json");
+            JSONObject jsonProduct = new JSONObject();
+            jsonProduct.put("productName",jsonCredit.getProductName());
+            jsonProduct.put("value",jsonCredit.getValue());
+            jsonProduct.put("creditID",credit.getID());
+            HttpEntity <String> httpEntityProduct = new HttpEntity<String>(jsonProduct.toString(), httpHeadersProduct);
+            //restTemplate.postForObject("http://localhost:8082/CreateProduct",httpEntityProduct,String.class);
+            restTemplate.postForObject("http://product:8082/CreateProduct",httpEntityProduct,String.class);
+            return "{\n\"Numer kredytu\": " + credit.getID()+ "\n}";
         }else {
             return "Error: Zły pesel";
         }
