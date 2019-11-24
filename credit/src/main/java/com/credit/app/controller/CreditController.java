@@ -49,10 +49,10 @@ public class CreditController {
             Credit credit = new Credit();
             credit.setCreditName(creditName);
             creditRepository.save(credit);
-            restTemplate.exchange("http://localhost:8082/CreateProduct?creditId=" + credit.getID() + "&productName=" + productName + "&value=" + value, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {
-            });
-            restTemplate.exchange("http://localhost:8081/CreateCustomer?creditId=" + credit.getID() + "&firstName=" + firstName + "&surname=" + surname + "&pesel=" + pesel, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {
-            });
+            //restTemplate.exchange("http://localhost:8082/CreateProduct?creditId=" + credit.getID() + "&productName=" + productName + "&value=" + value, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
+            //restTemplate.exchange("http://localhost:8081/CreateCustomer?creditId=" + credit.getID() + "&firstName=" + firstName + "&surname=" + surname + "&pesel=" + pesel, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
+            restTemplate.exchange("http://product:8082/CreateProduct?creditId=" + credit.getID() + "&productName=" + productName + "&value=" + value, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
+            restTemplate.exchange("http://customer:8081/CreateCustomer?creditId=" + credit.getID() + "&firstName=" + firstName + "&surname=" + surname + "&pesel=" + pesel, HttpMethod.POST, null, new ParameterizedTypeReference<String>() {});
             return "{\n\"Numer kredytu\": " + credit.getID().toString() + "\n}";
         }else {
             return "Error: Zły pesel";

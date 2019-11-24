@@ -1,42 +1,43 @@
-CREATE DATABASE IF NOT EXISTS task;
-use task;
+CREATE DATABASE IF NOT EXISTS CreditDB;
+CREATE DATABASE IF NOT EXISTS CustomerDB;
+CREATE DATABASE IF NOT EXISTS ProductDB;
 
-CREATE TABLE IF NOT EXISTS Credit (
-    ID INT NOT NULL,
-    CreditName varchar(50),
-    PRIMARY KEY (ID)
+CREATE TABLE IF NOT EXISTS CreditDB.credit(
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    credit_name varchar(255),
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS Customer (
-    ID INT NOT NULL AUTO_INCREMENT,
-    CreditID INT,
-    FirstName varchar(50),
-    Pesel varchar(11),
-    Surname varchar(50),
-    PRIMARY KEY (ID),
-    FOREIGN KEY (CreditID) REFERENCES Credit(ID)
+CREATE TABLE IF NOT EXISTS CustomerDB.customer(
+    id INT NOT NULL AUTO_INCREMENT,
+    creditid INT NOT NULL,
+    first_name varchar(255),
+    pesel varchar(11),
+    surname varchar(255),
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS Product (
-    ID INT NOT NULL AUTO_INCREMENT,
-    CreditID INT,
-    ProductName varchar(50),
-    Value INT,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (CreditID) REFERENCES Credit(ID)
+CREATE TABLE IF NOT EXISTS ProductDB.product(
+    id INT NOT NULL AUTO_INCREMENT,
+    creditid INT,
+    product_name varchar(255),
+    value INT,
+    PRIMARY KEY (id)
 );
 
-INSERT INTO credit(creditname) VALUES (
-1,"Ala");
-INSERT INTO credit(CreditName) VALUES (
-2,"Ala");
+INSERT INTO CreditDB.credit(credit_name) VALUES (
+"Ala");
+INSERT INTO CreditDB.credit(credit_name) VALUES (
+"Ala");
 
-INSERT INTO Customer(CreditID, FirstName, Pesel, Surname) VALUES (
-1, "Ala", 931108029, "Ela");
-INSERT INTO Customer(CreditID, FirstName, Pesel, Surname) VALUES (
-2, "Ala2", 931108022, "Ela2");
+INSERT INTO  CustomerDB.customer(creditid, first_name, pesel, surname) VALUES (
+ 1, "Ala", 931108029, "Ela");
+INSERT INTO  CustomerDB.customer(creditid, first_name, pesel, surname) VALUES (
+ 2, "Ala2", 931108022, "Ela2");
 
-INSERT INTO Product(CreditID, ProductName, Value) VALUES (
-1,"Cola", 2.33);
-INSERT INTO Product(CreditID, ProductName, Value) VALUES (
-2,"peps", 2.33);
+INSERT INTO ProductDB.product(creditid, product_name, value) VALUES (
+1,"Cola", 212);
+INSERT INTO ProductDB.product(creditid, product_name, value) VALUES (
+2,"peps", 210);
+
+GRANT ALL PRIVILEGES ON *.* TO 'demo_java'@'%';

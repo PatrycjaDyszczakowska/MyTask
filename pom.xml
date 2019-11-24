@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>customer</module>
         <module>credit</module>
+        <module>customer</module>
         <module>product</module>
     </modules>
 

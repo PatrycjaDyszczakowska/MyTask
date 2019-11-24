@@ -7,41 +7,39 @@ services:
       - MYSQL_ROOT_PASSWORD=1234
       - MYSQL_USER=demo_java
       - MYSQL_PASSWORD=1234
-      - MYSQL_DATABASE=database
+    volumes:
+      - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
     ports:
       - 3306:3306
 
   credit:
     image: springboot/springboot-credit
     build: .\credit
+    container_name: credit
     ports:
       - 8080:8080
     depends_on:
       - database
       - customer
       - product
-    environment:
-      - DATASOURCE_URL=jdbc:mysql://database:3306/task?useSSL=falsek&user=root&password=myroot&autoReconnect=true
+    command: /bin/bash -c "sleep 30;"
 
   customer:
     image: springboot/springboot-customer
-    network_mode: bridge
     build: .\customer
+    container_name: customer
     ports:
       - 8081:8081
     depends_on:
       - database
-    environment:
-      - DATABASE_HOST=database
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=hello_java
-      - DATABASE_USER=demo_java
-      - DATABASE_PASSWORD=1234
+    command: /bin/bash -c "sleep 30;"
 
   product:
     image: springboot/springboot-product
     build: .\product
+    container_name: product
     ports:
       - 8082:8082
     depends_on:
       - database
+    command: /bin/bash -c "sleep 30;"

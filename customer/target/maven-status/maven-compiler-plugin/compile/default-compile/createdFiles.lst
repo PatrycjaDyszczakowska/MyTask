@@ -1,0 +1,4 @@
+com\customer\app\model\Customer.class
+com\customer\app\controller\CustomerController.class
+com\customer\app\CustomerApplication.class
+com\customer\app\repository\CustomerRepository.class
