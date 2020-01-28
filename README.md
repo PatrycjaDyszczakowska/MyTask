@@ -6,7 +6,7 @@ Project is created on Windows 10 within:
 * Java: 8
 * Apache Maven: 3.6.2
 * Spring boot: 2.1.5.RELEASE
-* MySQL: 
+* MySQL: 5.7
 * Docker: 19.03.5
 
 ## Setup
